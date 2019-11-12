@@ -1,0 +1,4 @@
+INFO:root:Mounting request string
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/now_playing?api_key=3a759be71aa9bae9de1e0621d0ef7f14 HTTP/1.1" 200 None
+INFO:root:Executing API request
