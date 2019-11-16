@@ -1,0 +1,6 @@
+pip==19.2.3
+logging==0.5.1.2
+json==2.0.9
+requests==2.22.0
+flask==1.1.1
+google-cloud-error-reporting==0.32.1
