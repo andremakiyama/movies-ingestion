@@ -5,6 +5,7 @@ O programa foi desenvolvido pensando na plataforma da Google GCP utilizando Pyth
 1) Função para coletar os dados vindos da API de filmes e persistir o JSON no GCP Storage
 Para realizar o deploy da GCP Functions, cujo objetivo do método é escutar no path uma chamada para realizar o consumo da API:
 commit no GitHub branch master
+
 gcloud functions deploy movie_ingestion --runtime python37 --trigger-http
 
 chamada da API:

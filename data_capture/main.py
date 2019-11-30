@@ -18,4 +18,4 @@ def movie_capture_json(request):
     json_file= "{'dbname':" + "'" + pathname + "'\," + "'timestamp':" + "'\," + timestampStr + "'\," + "'data':" + api_results+ "}"
     gcp_rawpersist.saveFile(filename, json_file)
     
-    return api_results
+    return json_file
