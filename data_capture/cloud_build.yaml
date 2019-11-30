@@ -4,6 +4,6 @@ steps:
   - functions
   - deploy
   - movie_ingestion
-  - --runtime python37
+  - runtime python37
   - --source=.
   - --trigger-http
