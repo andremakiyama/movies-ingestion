@@ -1,0 +1,9 @@
+steps: 
+  - name: 'gcr.io/cloud-builders/movie_ingestion'   
+  args:   
+    - functions   
+    - deploy   
+    - movie_ingestion   
+    - --source=.   
+    - --trigger-http   
+    - --runtime python37
