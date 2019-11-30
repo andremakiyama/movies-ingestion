@@ -2,10 +2,13 @@ import module.movies_api_consumption as apirequest
 import module.gcp_raw_storage_persist as gcp_rawpersist
 import re
 
-from datetime import datetime
+from pytz import timezone
+import datetime
 import flask
 
-dateTimeObj = datetime.now()
+
+brasil_timezone = timezone("Brazil/East")
+dateTimeObj = datetime.datetime.now(brasil_timezone)
 timestampStr = dateTimeObj.strftime("%Y%m%d-%H%M%S")
 
 def movie_capture_json(request):
