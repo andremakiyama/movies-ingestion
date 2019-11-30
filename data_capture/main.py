@@ -8,7 +8,7 @@ import flask
 dateTimeObj = datetime.now()
 timestampStr = dateTimeObj.strftime("%Y%m%d-%H%M%S")
 
-def movie_ingestion(request):
+def movie_capture_json(request):
     json_request=request.get_json()
     pathname = re.sub('[^a-zA-Z0-9 \n\.]', '-', str(json_request["path"]))
     filename = pathname + "_" +timestampStr
