@@ -4,6 +4,6 @@ steps:
   - functions
   - deploy
   - movie_capture_json
-  - --source=/data_capture/
+  - --source=data_capture/
   - --runtime=python37
   - --trigger-http
