@@ -1,9 +1,9 @@
 steps:
-- name: 'gcr.io/cloud-builders/gcloud'
+- name: 'gcr.io/cloud-builders/movie_capture_json'
   args:
   - functions
   - deploy
-  - movie_ingestion
+  - movie_capture_json
   - --runtime=python37
   - --source=.
   - --trigger-http
