@@ -15,6 +15,7 @@ def movie_ingestion(request):
     
     api_results = str(apirequest.getapidata(json_request["path"],json_request["api_key"]))
     
-    gcp_rawpersist.saveFile(filename, api_results)
+    json_file= "{'dbname':" + "'" + pathname + "'," + "'timestamp':" + "'," + timestampStr + "'," + "'data':" + api_results+ "}"
+    gcp_rawpersist.saveFile(filename, json_file)
     
     return api_results
