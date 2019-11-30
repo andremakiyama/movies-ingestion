@@ -5,5 +5,4 @@ steps:
   - deploy
   - movie_capture_json
   - --runtime=python37
-  - --source=.
   - --trigger-http
