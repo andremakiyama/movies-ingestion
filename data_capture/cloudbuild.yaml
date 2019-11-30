@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/cloud-builders/movie-raw-ingestion' 
+- name: 'gcr.io/cloud-builders/gcloud' 
   args:
   - functions
   - deploy
