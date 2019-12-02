@@ -9,7 +9,7 @@ def getapidata(path,key):
         try:
             api_results = request.json()['results']
         except:
-            pass
+            api_results = request.json()
         if len(api_results) <= 0:
             print("Dados não encontrados")
             system.exit(2)
@@ -17,4 +17,3 @@ def getapidata(path,key):
         return api_results
     except Exception as e:
         print(e)
-        sys.exit(1)
