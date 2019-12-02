@@ -6,9 +6,10 @@ def getapidata(path,key):
 
     try:
         request= requests.get(api_string)
-        
-        api_results = request.json()['results']
-        
+        try:
+            api_results = request.json()['results']
+        except:
+            pass
         if len(api_results) <= 0:
             print("Dados não encontrados")
             system.exit(2)

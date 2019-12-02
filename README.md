@@ -10,9 +10,9 @@ https://github.com/andremakiyama/movies-ingestion
 
 chamada da API(linux):
 
-curl -X POST "https://us-central1-movies-dataflow.cloudfunctions.net/movie_capture_json" -H "Content-Type:application/json" --data '{"path":"now_playing", "api_key":"3a759be71aa9bae9de1e0621d0ef7f14", tablename="now_playing"}'
+curl -X POST "https://us-central1-movies-dataflow.cloudfunctions.net/movie_capture_json" -H "Content-Type:application/json" --data '{"path":"now_playing", "api_key":"3a759be71aa9bae9de1e0621d0ef7f14", "tablename":"now_playing"}'
 
-curl -X POST "https://us-central1-movies-dataflow.cloudfunctions.net/movie_capture_json" -H "Content-Type:application/json" --data '{"path":"upcoming", "api_key":"3a759be71aa9bae9de1e0621d0ef7f14", tablename="now_playing"}'
+curl -X POST "https://us-central1-movies-dataflow.cloudfunctions.net/movie_capture_json" -H "Content-Type:application/json" --data '{"path":"3", "api_key":"3a759be71aa9bae9de1e0621d0ef7f14", "tablename":"movie_info"}'
 
 Aonde:
     path=caminho da API Movies
