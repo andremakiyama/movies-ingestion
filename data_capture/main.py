@@ -23,4 +23,4 @@ def movie_capture_json(request):
     corrected_json = re.sub("'", '"', json_file)
     gcp_rawpersist.saveFile(filename, corrected_json)
     
-    return json_file
+    return corrected_json
