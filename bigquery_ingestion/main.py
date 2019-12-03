@@ -14,9 +14,9 @@ BQ_DATASET = 'raw_data'
 def json_bigquery_ingestion(data, context):
     bucket_name = data['bucket']
     file_name = data['name']
-    retorno=""
+
     try:
-         retorno=insert_into_bigquery(bucket_name, file_name)
+         insert_into_bigquery(bucket_name, file_name)
     except Exception:
          print(Exception)
             
@@ -26,7 +26,7 @@ def insert_into_bigquery(bucket_name, file_name):
     
     row = json.loads(blob.download_as_string())
     table = BQ.dataset(BQ_DATASET).table(BQ_TABLE)
-    
+    print("CONTEUDO DO JSON? " + row)
     
     #errors = BQ.insert_rows_json(table,
      #                            json_rows=[row],
@@ -34,4 +34,4 @@ def insert_into_bigquery(bucket_name, file_name):
        #                          retry=retry.Retry(deadline=30))
     if errors != []:
         raise BigQueryError(errors)
-    print(row)
+
