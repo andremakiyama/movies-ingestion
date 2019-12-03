@@ -14,7 +14,7 @@ BQ_DATASET = 'raw_data'
 def json_bigquery_ingestion(data, context):
     bucket_name = data['bucket']
     file_name = data['name']
-    
+    retorno=""
     try:
          retorno=insert_into_bigquery(bucket_name, file_name)
     except Exception:
