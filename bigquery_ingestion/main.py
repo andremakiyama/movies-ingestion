@@ -25,6 +25,10 @@ def json_bigquery_ingestion(data, context):
          print(e)
 
 def insert_into_bigquery(bucket_name, file_name):
+    table_params = txt.split("_")
+    tablename = table_params[0]
+    timestamp = table_params[1]
+    
     table = BQ.dataset(bq_dataset).table(tablename)
     dataset_ref = BQ.dataset(bq_dataset)
     
@@ -43,3 +47,4 @@ def insert_into_bigquery(bucket_name, file_name):
 
     destination_table = client.get_table(dataset_ref.table(tablename))
     print("Loaded {} rows.".format(destination_table.num_rows))
+
