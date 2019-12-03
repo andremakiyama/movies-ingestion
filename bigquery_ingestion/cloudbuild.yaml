@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/gcloud' 
+  args:
+  - functions
+  - deploy
+  - json_bigquery_ingestion
+  - --source=bigquery_ingestion/
+  - --runtime=python37
+  - --trigger-resource movies-rawdata-prepare
+  - --trigger-event google.storage.object.finalize
