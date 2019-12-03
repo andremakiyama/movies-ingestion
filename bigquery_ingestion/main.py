@@ -1,13 +1,39 @@
-import google.cloud.storage
-import google.cloud.bigquery
-import google.cloud.core
+import json
+import logging
+import os
+import traceback
+from datetime import datetime
 
+from google.cloud import bigquery
+from google.cloud import storage
+import pytz
+
+BQ = bigquery.Client()
+BQ_DATASET = 'raw_data'
 
 def json_bigquery_ingestion(data, context):
-    print('Event ID: {}'.format(context.event_id))
-    print('Event type: {}'.format(context.event_type))
-    print('Bucket: {}'.format(data['bucket']))
-    print('File: {}'.format(data['name']))
-    print('Metageneration: {}'.format(data['metageneration']))
-    print('Created: {}'.format(data['timeCreated']))
-    print('Updated: {}'.format(data['updated'])
+    bucket_name = data['bucket']
+    file_name = data['name']
+    
+    try:
+         insert_into_bigquery(bucket_name, file_name)
+    except Exception:
+         print(Exception)
+    return row
+
+            
+
+def insert_into_bigquery(bucket_name, file_name):
+    blob = CS.get_bucket(bucket_name).blob(file_name)
+    
+    row = json.loads(blob.download_as_string())
+    table = BQ.dataset(BQ_DATASET).table(BQ_TABLE)
+    
+    
+    #errors = BQ.insert_rows_json(table,
+     #                            json_rows=[row],
+      #                           row_ids=[file_name],
+       #                          retry=retry.Retry(deadline=30))
+    if errors != []:
+        raise BigQueryError(errors)
+    return row
