@@ -20,7 +20,7 @@ def movie_capture_json(request):
     api_results = str(apirequest.getapidata(json_request["path"],json_request["api_key"]))
     
     json_file= "{'dbname':" + "'" + tablename + "'," + "'timestamp':" + "'," + timestampStr + "'," + "'data':" + api_results+ "}"
-    corrected_json = re.sub("'", '"', json_file))
+    corrected_json = re.sub("'", '"', json_file)
     gcp_rawpersist.saveFile(filename, corrected_json)
     
     return json_file
