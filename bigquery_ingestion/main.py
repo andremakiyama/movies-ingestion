@@ -11,4 +11,3 @@ def json_bigquery_ingestion(data, context):
     print('Metageneration: {}'.format(data['metageneration']))
     print('Created: {}'.format(data['timeCreated']))
     print('Updated: {}'.format(data['updated'])
-    
