@@ -19,8 +19,6 @@ def json_bigquery_ingestion(data, context):
          retorno=insert_into_bigquery(bucket_name, file_name)
     except Exception:
          print(Exception)
-    return '{"data":"'+retorno+'"}'
-
             
 
 def insert_into_bigquery(bucket_name, file_name):
@@ -36,4 +34,4 @@ def insert_into_bigquery(bucket_name, file_name):
        #                          retry=retry.Retry(deadline=30))
     if errors != []:
         raise BigQueryError(errors)
-    return row
+    print(row)
