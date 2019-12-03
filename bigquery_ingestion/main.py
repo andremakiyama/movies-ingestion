@@ -1,3 +1,7 @@
+import google.cloud.storage
+import google.cloud.bigquery
+import google.cloud.core
+
 
 def json_bigquery_ingestion(data, context):
     print('Event ID: {}'.format(context.event_id))
