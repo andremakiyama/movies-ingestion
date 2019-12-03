@@ -25,7 +25,7 @@ def json_bigquery_ingestion(data, context):
          print(e)
 
 def insert_into_bigquery(bucket_name, file_name):
-    table_params = txt.split("_")
+    table_params = file_name.split("_")
     tablename = table_params[0]
     timestamp = table_params[1]
     
