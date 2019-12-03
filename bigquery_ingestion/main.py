@@ -21,9 +21,8 @@ def json_bigquery_ingestion(data, context):
 
     try:
         insert_into_bigquery(bucket_name, file_name)
-    except Exception:
-         print(Exception)
-            
+    except Exception as e:
+         print(e)
 
 def insert_into_bigquery(bucket_name, file_name):
     table = BQ.dataset(bq_dataset).table(tablename)
@@ -44,4 +43,3 @@ def insert_into_bigquery(bucket_name, file_name):
 
     destination_table = client.get_table(dataset_ref.table(tablename))
     print("Loaded {} rows.".format(destination_table.num_rows))
-
