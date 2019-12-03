@@ -19,7 +19,7 @@ def json_bigquery_ingestion(data, context):
          retorno=insert_into_bigquery(bucket_name, file_name)
     except Exception:
          print(Exception)
-    return retorno
+    return '{"data":"'+retorno+'"}'
 
             
 
