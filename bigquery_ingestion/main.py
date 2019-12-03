@@ -9,7 +9,11 @@ from google.cloud import storage
 import pytz
 
 BQ = bigquery.Client()
-BQ_DATASET = 'raw_data'
+bq_dataset = "raw_data"
+
+CS = storage.Client()
+gcp_folder_raw="rawdataprepare/"
+bucket_name= "movies-rawdata-prepare"
 
 def json_bigquery_ingestion(data, context):
     bucket_name = data['bucket']
@@ -22,16 +26,22 @@ def json_bigquery_ingestion(data, context):
             
 
 def insert_into_bigquery(bucket_name, file_name):
-    blob = CS.get_bucket(bucket_name).blob(file_name)
+    table = BQ.dataset(bq_dataset).table(tablename)
+    dataset_ref = BQ.dataset(bq_dataset)
     
-    row = json.loads(blob.download_as_string())
-    table = BQ.dataset(BQ_DATASET).table(BQ_TABLE)
-    print("CONTEUDO DO JSON? " + row)
+    job_config = bigquery.LoadJobConfig()
+    job_config.autodetect = True
+    job_config.source_format = bigquery.SourceFormat.NEWLINE_DELIMITED_JSON
     
-    #errors = BQ.insert_rows_json(table,
-     #                            json_rows=[row],
-      #                           row_ids=[file_name],
-       #                          retry=retry.Retry(deadline=30))
-    if errors != []:
-        raise BigQueryError(errors)
+    uri = "gs://"+ bucket_name + "/" + gcp_folder_raw + "/" + file_name
+    load_job = BQ.load_table_from_uri(
+        uri, dataset_ref.table(tablename), job_config=job_config
+    )  # API request
+    print("Starting job {}".format(load_job.job_id))
+
+    load_job.result()  # Waits for table load to complete.
+    print("Job finished.")
+
+    destination_table = client.get_table(dataset_ref.table(tablename))
+    print("Loaded {} rows.".format(destination_table.num_rows))
 
