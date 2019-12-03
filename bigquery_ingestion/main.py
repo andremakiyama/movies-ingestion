@@ -20,7 +20,7 @@ def json_bigquery_ingestion(data, context):
     file_name = data['name']
 
     try:
-         insert_into_bigquery(bucket_name, file_name)
+        insert_into_bigquery(bucket_name, file_name)
     except Exception:
          print(Exception)
             
