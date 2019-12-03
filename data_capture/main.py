@@ -18,7 +18,7 @@ def movie_capture_json(request):
     filename = tablename + "_" +timestampStr
     
     api_results = str(apirequest.getapidata(json_request["path"],json_request["api_key"]))
-    results = re.sub('None', '', re.sub('False', 'false', re.sub('True', 'true', api_results)))
+    results = re.sub('None', '"none"', re.sub('False', 'false', re.sub('True', 'true', api_results)))
     
     json_file= "{'dbname':" + "'" + tablename + "'," + "'timestamp':" + "'," + timestampStr + "'," + "'data':" + results+ "}"
     corrected_json = re.sub("'", '"', json_file)
