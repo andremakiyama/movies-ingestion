@@ -36,7 +36,7 @@ def insert_into_bigquery(bucket_name, file_name):
     job_config.autodetect = True
     job_config.source_format = bigquery.SourceFormat.NEWLINE_DELIMITED_JSON
 
-    uri = "gs://"+ bucket_name + "/" + gcp_folder_raw + "/" + file_name
+    uri = "gs://"+ bucket_name + "/" + file_name
     print("URI: " + uri)
     
     load_job = BQ.load_table_from_uri(
