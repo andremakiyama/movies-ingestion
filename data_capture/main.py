@@ -14,7 +14,7 @@ timestampStr = dateTimeObj.strftime("%Y%m%d-%H%M%S")
 def movie_capture_json(request):
     json_request=request.get_json()
     tablename = re.sub('[^a-zA-Z0-9 \n\.]', '_', str(json_request["tablename"]))
-    filename = tablename + "_" +timestampStr
+    filename = tablename + "-" +timestampStr
     
     api_results = str(apirequest.getapidata(json_request["path"],json_request["api_key"]))
     results = re.sub('None', '"none"', re.sub('False', 'false', re.sub('True', 'true', api_results)))
