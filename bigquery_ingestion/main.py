@@ -52,6 +52,6 @@ def insert_into_bigquery(bucket_name, file_name):
     load_job.result()  # Waits for table load to complete.
     print("Job finished. ")
 
-    destination_table = client.get_table(dataset_ref.table(file_path))
+    destination_table = BQ.get_table(dataset_ref.table(file_path))
     print("Loaded {} rows. ".format(destination_table.num_rows))
 
