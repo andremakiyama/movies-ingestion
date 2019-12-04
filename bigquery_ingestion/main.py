@@ -25,14 +25,16 @@ def json_bigquery_ingestion(data, context):
          print(e)
 
 def insert_into_bigquery(bucket_name, file_name):
-    table_params = file_name.split("-")
-    tablename = table_params[0]
-    timestamp = table_params[1]
-    print(table_params)
-    print(tablename)
+    file_name_params = file_name.split("-")
+    file_path = file_name_params[0]
+    timestamp = file_name_params[1]
+
+    print(file_path)
     print(timestamp)
+    file_path_split = file_path.split("/")
+    table_name = file_path_split[1]
     
-    table = BQ.dataset(bq_dataset).table(tablename)
+    table = BQ.dataset(bq_dataset).table(table_name)
     dataset_ref = BQ.dataset(bq_dataset)
     
     job_config = bigquery.LoadJobConfig()
@@ -43,13 +45,13 @@ def insert_into_bigquery(bucket_name, file_name):
     print("URI: " + uri)
     
     load_job = BQ.load_table_from_uri(
-        uri, dataset_ref.table(tablename), job_config=job_config
+        uri, dataset_ref.table(table_name), job_config=job_config
     )  # API request
     print("Starting job {} ".format(load_job.job_id))
 
     load_job.result()  # Waits for table load to complete.
     print("Job finished. ")
 
-    destination_table = client.get_table(dataset_ref.table(tablename))
+    destination_table = client.get_table(dataset_ref.table(file_path))
     print("Loaded {} rows. ".format(destination_table.num_rows))
 
