@@ -18,7 +18,7 @@ bucket_name= "movies-rawdata-prepare"
 def json_bigquery_ingestion(data, context):
     bucket_name = data['bucket']
     file_name = data['name']
-    print("bucket and filename: " + bucket_name+ file_name)
+    print("Iniciating the raw ingestion process " + file_name)
     try:
         insert_into_bigquery(bucket_name, file_name)
     except Exception as e:
@@ -28,6 +28,9 @@ def insert_into_bigquery(bucket_name, file_name):
     table_params = file_name.split("-")
     tablename = table_params[0]
     timestamp = table_params[1]
+    print(table_params)
+    print(tablename)
+    print(timestamp)
     
     table = BQ.dataset(bq_dataset).table(tablename)
     dataset_ref = BQ.dataset(bq_dataset)
