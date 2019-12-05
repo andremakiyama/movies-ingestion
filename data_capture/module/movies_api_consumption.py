@@ -7,7 +7,7 @@ def getapidata(path,key):
     try:
         request = requests.get(api_string)
         try:
-            api_results = re.sub("}, {", '}\n{', json.dumps(request.json()["results"])[0:-1])
+            api_results = re.sub("}, {", '}\n{', json.dumps(request.json()["results"]))[0:-1]
         except Exception as e:
             print("Exception: " +e)
             api_results = json.dumps(request.json())
