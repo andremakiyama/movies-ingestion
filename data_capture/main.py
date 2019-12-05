@@ -23,7 +23,7 @@ def movie_capture_json(request):
     #removing_quotes = re.sub('"', '', results)
     #corrected_json = re.sub("'", '"', removing_quotes)
     
-    corrected_json = json.dumps(apirequest.getapidata(json_request["path"],json_request["api_key"]))
+    corrected_json = json.dumps(apirequest.getapidata(json_request["path"],json_request["api_key"]))[0:-1]
     
     gcp_rawpersist.saveFile(filename, corrected_json)
     
