@@ -20,7 +20,8 @@ def movie_capture_json(request):
     results = re.sub('None', '"none"', re.sub('False', 'false', re.sub('True', 'true', api_results)))
     
     #json_file= "{'dbname':" + "'" + tablename + "'," + "'timestamp':" + "'," + timestampStr + "'," + "'data':" + results+ "}"
-    corrected_json = re.sub("'", '"', results)
+    removing_quotes = re.sub('"', '', results)
+    corrected_json = re.sub("'", '"', removing_quotes)
     gcp_rawpersist.saveFile(filename, corrected_json)
     
     return corrected_json
