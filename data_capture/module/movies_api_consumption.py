@@ -7,7 +7,7 @@ def getapidata(path,key):
     try:
         request = requests.get(api_string)
         try:
-            api_results = json.dumps(request.json()['results'])
+            api_results = json.dumps(request.json()['results'])[0:-1]
         except:
             api_results = json.dumps(request.json())
         if len(api_results) <= 0:
