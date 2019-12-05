@@ -26,4 +26,4 @@ Aonde:
 
 
 2)bigquery_ingestion Coleta o JSON no Storage e persiste seus dados no GCP BigQuery
-No caso deste fluxo, assim que o dado for coletado e enviado ao Storage pelo APP 1, a trigger será acionada automaticamente e os dados serão persistidos dentro do dataset 'raw_data'
+No caso deste fluxo, assim que o dado for coletado e enviado ao Storage pela parte 1, a trigger será acionada automaticamente e os dados serão persistidos dentro do dataset 'raw_data'
