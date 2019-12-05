@@ -23,8 +23,7 @@ def movie_capture_json(request):
     #removing_quotes = re.sub('"', '', results)
     #corrected_json = re.sub("'", '"', removing_quotes)
     
-    corrected_json = re.sub("},{", "},\n{", apirequest.getapidata(json_request["path"],json_request["api_key"] ))
+    corrected_json = re.sub("},{", '},\n{', apirequest.getapidata(json_request["path"],json_request["api_key"] ))
     
     gcp_rawpersist.saveFile(filename, corrected_json)
-    
     return corrected_json

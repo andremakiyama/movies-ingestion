@@ -5,7 +5,7 @@ def getapidata(path,key):
     print("API Consumption string: " + api_string)
 
     try:
-        request= requests.get(api_string)
+        request = requests.get(api_string)
         try:
             api_results = json.dumps(request.json()['results'])
         except:
