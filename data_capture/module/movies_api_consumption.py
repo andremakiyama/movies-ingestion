@@ -1,4 +1,4 @@
-import requests
+import requests,json
 
 def getapidata(path,key):
     api_string='https://api.themoviedb.org/3/movie/' + path + '?api_key='+key
@@ -7,9 +7,9 @@ def getapidata(path,key):
     try:
         request= requests.get(api_string)
         try:
-            api_results = request.json()['results']
+            api_results = json.dumps(request.json()['results'])[0:-1]
         except:
-            api_results = request.json() 
+            api_results = json.dumps(request.json())
         if len(api_results) <= 0:
             print("Dados não encontrados")
             system.exit(2)
