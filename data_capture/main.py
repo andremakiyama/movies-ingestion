@@ -1,6 +1,6 @@
 import module.movies_api_consumption as apirequest
 import module.gcp_raw_storage_persist as gcp_rawpersist
-import re,json
+import re
 
 from pytz import timezone
 import datetime
@@ -23,7 +23,7 @@ def movie_capture_json(request):
     #removing_quotes = re.sub('"', '', results)
     #corrected_json = re.sub("'", '"', removing_quotes)
     
-    corrected_json = json.dumps(apirequest.getapidata(json_request["path"],json_request["api_key"]))[0:-1]
+    corrected_json = re.sub("},{","},\n{",apirequest.getapidata(json_request["path"],json_request["api_key"]))
     
     gcp_rawpersist.saveFile(filename, corrected_json)
     

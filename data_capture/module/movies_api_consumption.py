@@ -7,13 +7,13 @@ def getapidata(path,key):
     try:
         request= requests.get(api_string)
         try:
-            api_results = json.dumps(request.json()['results'])[0:-1]
+            api_results = request.json()['results']
         except:
-            api_results = json.dumps(request.json())
+            api_results = request.json()
         if len(api_results) <= 0:
             print("Dados não encontrados")
             system.exit(2)
             
-        return api_results
+        return json.dumps(api_results)
     except Exception as e:
         print(e)
