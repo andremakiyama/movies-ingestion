@@ -9,7 +9,7 @@ def getapidata(path,key):
         try:
             api_results = re.sub("}, {", '}\n{', json.dumps(request.json()["results"])[0:-1])
         except Exception as e:
-            print(e)
+            print("Exception: " +e)
             api_results = json.dumps(request.json())
         if len(api_results) <= 0:
             print("Dados não encontrados")
